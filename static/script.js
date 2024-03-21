@@ -42,4 +42,4 @@ const sendRequest = async (vote1, vote2, vote3, identifier) => {
     }
 }
 
-sendRequest(2, 2, 1, "12245678");
+//sendRequest(2, 2, 1, "12245678");

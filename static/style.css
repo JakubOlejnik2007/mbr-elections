@@ -1,0 +1,21 @@
+* {
+
+}
+
+body {
+    margin: 0;
+}
+
+.section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 5px;
+    background-color: #e0e1e1;
+}
+
+.section__input {
+    padding: 5px;
+    border-radius: 3px;
+}
