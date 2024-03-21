@@ -3,7 +3,7 @@ import path from 'path';
 
 dotenv.config({path: path.join(__dirname, '../.env')});
 
-const {DB_NAME, DB_HOST, DB_USER, DB_PASS, HTTP_PORT} = process.env
+const {DB_DATABASE, DB_HOST, DB_USER, DB_PASS, HTTP_PORT} = process.env
 
 type Config = {
     http: {
@@ -11,7 +11,7 @@ type Config = {
     },
     mysql: {
         host: string,
-        name: string,
+        database: string,
         user: string,
         password: string
     }
@@ -24,7 +24,7 @@ export const config: Config = {
     },
     mysql: {
         host: String(DB_HOST) || 'localhost',
-        name: String(DB_NAME) || 'elections',
+        database: String(DB_DATABASE) || 'elections',
         user: String(DB_USER) || 'root',
         password: String(DB_PASS) || ''
     }
