@@ -21,9 +21,9 @@ app.post('/vote', async (req: Request, res: Response) => {
         const DATABASE = new MySQLDatabase(configDB);
         await DATABASE.connect();
 
-        const { vote1, vote2, vote3, identifier } = req.body;
-        const query = `UPDATE Votes SET vote1 = ?, vote2 = ?, vote3 = ? WHERE ID = ?`;
-        const values = [Number(vote1), Number(vote2), Number(vote3), identifier];
+        const { olejnik, krol, wojtynska, identifier } = req.body;
+        const query = `UPDATE Votes SET olejnik = ?, krol = ?, wojtynska = ? WHERE ID = ?`;
+        const values = [Number(olejnik), Number(krol), Number(wojtynska), identifier];
         if (await checkIfIdentifierExists(DATABASE, identifier)){
             await DATABASE.query(query, values);
 
