@@ -1,3 +1,9 @@
+let pointsOlejnik = 1;
+let pointsKrol = 1;
+let pointsWojtynska = 1;
+
+const POINTDIV = `<div class="point"></div>`;
+
 const showResult = (message) => {
     window.alert(message);
 }
@@ -42,4 +48,48 @@ const sendRequest = async (vote1, vote2, vote3, identifier) => {
     }
 }
 
-//sendRequest(2, 2, 1, "12245678");
+const updatePoints = (candidate, operation) => {
+    switch (candidate) {
+        case 'Olejnik':
+            if (operation === 'add') {
+                pointsOlejnik++;
+            } else if (operation === 'subtract' && pointsOlejnik > 0) {
+                pointsOlejnik--;
+            }
+            break;
+        case 'Król':
+            if (operation === 'add') {
+                pointsKrol++;
+            } else if (operation === 'subtract' && pointsKrol > 0) {
+                pointsKrol--;
+            }
+            break;
+        case 'Wojtyńska':
+            if (operation === 'add') {
+                pointsWojtynska++;
+            } else if (operation === 'subtract' && pointsWojtynska > 0) {
+                pointsWojtynska--;
+            }
+            break;
+        default:
+            break;
+    }
+    displayPoints();
+}
+
+const displayPoints = () => {
+    document.querySelector("#pointsOlejnik").innerHTML = POINTDIV.repeat(pointsOlejnik);
+    document.querySelector("#pointsKrol").innerHTML = POINTDIV.repeat(pointsKrol);
+    document.querySelector("#pointsWojtynska").innerHTML = POINTDIV.repeat(pointsWojtynska);
+}
+
+document.querySelectorAll('.section__button--candidatePoints').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const candidateName = event.target.parentElement.parentElement.querySelector('h2').innerText.trim().split(" ")[1];
+        const operation = event.target.innerText === '+' ? 'add' : 'subtract';
+        console.log(candidateName, operation);
+        updatePoints(candidateName, operation);
+    });
+});
+
+displayPoints();

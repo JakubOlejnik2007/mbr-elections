@@ -97,6 +97,12 @@ body {
     background-color: #d8ca06;
 }
 
+#pointsOlejnik, #pointsKrol, #pointsWojtynska {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
 .section__button {
     border: none;
     border-radius: 8px;
