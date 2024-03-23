@@ -1,6 +1,8 @@
 let pointsOlejnik = 1;
 let pointsKrol = 1;
 let pointsWojtynska = 1;
+const inputPassword = document.querySelector(".section__input--js");
+const submitButton = document.querySelector(".section__button--js");
 
 const POINTDIV = `<div class="point"></div>`;
 
@@ -18,7 +20,7 @@ const sendValidate = (vote1, vote2, vote3, identifier) => {
 
 const sendRequest = async (olejnik, krol, wojtynska, identifier) => {
     try {
-        if (sendValidate(vote1, vote2, vote3, identifier)) {
+        if (sendValidate(olejnik, krol, wojtynska, identifier)) {
             const url = 'http://localhost:2503/vote';
             const data = {
                 olejnik, 
@@ -99,3 +101,10 @@ document.querySelectorAll('.section__button--candidatePoints').forEach(button =>
 });
 
 displayPoints();
+
+
+submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    console.log(pointsOlejnik, pointsKrol, pointsWojtynska, inputPassword.value)
+    sendRequest(pointsOlejnik, pointsKrol, pointsWojtynska, inputPassword.value);
+});
