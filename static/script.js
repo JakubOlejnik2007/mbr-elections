@@ -16,14 +16,14 @@ const sendValidate = (vote1, vote2, vote3, identifier) => {
     return (vote1 + vote2 + vote3 === 5 && (vote1 >= 1 && vote1 <= 3) && (vote2 >= 1 && vote2 <= 3) && (vote3 >= 1 && vote3 <= 3) && (String(identifier)).length === 8)
 }
 
-const sendRequest = async (vote1, vote2, vote3, identifier) => {
+const sendRequest = async (olejnik, krol, wojtynska, identifier) => {
     try {
         if (sendValidate(vote1, vote2, vote3, identifier)) {
             const url = 'http://localhost:2503/vote';
             const data = {
-                vote1,
-                vote2,
-                vote3,
+                olejnik, 
+                krol, 
+                wojtynska,
                 identifier
             };
 
@@ -49,25 +49,31 @@ const sendRequest = async (vote1, vote2, vote3, identifier) => {
 }
 
 const updatePoints = (candidate, operation) => {
+    const sumPoints = pointsOlejnik + pointsKrol + pointsWojtynska;
+    if (sumPoints >= 5 && operation === 'add') {
+        showError("Suma punktów nie może przekraczać 5");
+        return;
+    }
+
     switch (candidate) {
         case 'Olejnik':
             if (operation === 'add') {
                 pointsOlejnik++;
-            } else if (operation === 'subtract' && pointsOlejnik > 0) {
+            } else if (operation === 'subtract' && pointsOlejnik > 1) {
                 pointsOlejnik--;
             }
             break;
         case 'Król':
             if (operation === 'add') {
                 pointsKrol++;
-            } else if (operation === 'subtract' && pointsKrol > 0) {
+            } else if (operation === 'subtract' && pointsKrol > 1) {
                 pointsKrol--;
             }
             break;
         case 'Wojtyńska':
             if (operation === 'add') {
                 pointsWojtynska++;
-            } else if (operation === 'subtract' && pointsWojtynska > 0) {
+            } else if (operation === 'subtract' && pointsWojtynska > 1) {
                 pointsWojtynska--;
             }
             break;

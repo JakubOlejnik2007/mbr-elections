@@ -64,13 +64,17 @@ body {
 }
 
 .section__login {
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.section__candidates {
     margin: 5px 0;
     background-color: #eceaea;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px #3e3e3e1a;
+    box-shadow: 0 4px 6px #3e3e3e;
 }
-
 .section__form {
     display: flex;
     flex-direction: column;
@@ -80,6 +84,7 @@ body {
     width: 60%;
     border: none;
     border-radius: 8px;
+    background-color: #f8f8f8;
     padding: 12px;
     margin-bottom: 15px;
     font-size: 16px;
@@ -87,7 +92,7 @@ body {
 }
 
 .section__input:hover {
-    background-color: #f8f8f8;
+    background-color: #e6e6e6;
 }
 
 .point {
@@ -112,6 +117,7 @@ body {
     color: white;
     cursor: pointer;
     margin-top: 10px;
+    box-shadow: 0 4px 6px #0f0f0f1a;
 }
 
 .section__button--candidatePoints {
@@ -129,8 +135,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-.section__article {}
 
 .footer {
     background-color: #eceaea;
