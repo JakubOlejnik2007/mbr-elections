@@ -1,9 +1,45 @@
 * {
-
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px 25px;
+}
+
+.header__title {
+    font-size: 1.2rem;
+}
+
+.header__content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__logo {
+    width: 5%;
+    margin-right: 20px;
+    max-width: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+    .header__logo {
+        width: 10%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .header__logo {
+        width: 20%;
+    }
 }
 
 .section {
@@ -11,11 +47,46 @@ body {
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
-    padding: 10px 5px;
-    background-color: #e0e1e1;
+}
+
+.section__login {
+    margin: 5px 0;
+    background-color: #eceaea;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px #3e3e3e1a;
+}
+
+.section__form {
+    display: flex;
+    flex-direction: column;
 }
 
 .section__input {
-    padding: 5px;
-    border-radius: 3px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px #0f0f0f1a;
+}
+
+.section__input:hover {
+    background-color: #f8f8f8;
+}
+
+.section__button {
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #ff5a5f;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.section__button:hover {
+    background-color: #ff7b7f;
 }
