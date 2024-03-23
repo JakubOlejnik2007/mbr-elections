@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
     <title>Wybory MBR</title>
 
@@ -13,22 +14,62 @@
     <script src="script.js"></script>
     <header class="header">
         <div class="header__content">
-            <img src="logo.png" alt="Logo" class="header__logo">
+            <img src="images/logo.png" alt="Logo" class="image">
             <h1 class="header__title">Wybory na Młodzieżowego Burmistrza Miasta Radzymin</h1>
         </div>
     </header>
     <main>
         <section class="section section__login">
             <form class="section__form">
-                    <label>
-                        <input type="text" class="section__input" placeholder="Podaj hasło do logowania" required>
-                    </label>
-                    <label>
-                        <button class="section__button">Zaloguj się</button>
-                    </label>
+                <label>
+                    <input type="text" class="section__input" placeholder="Podaj hasło do logowania" required>
+                </label>
+                <label>
+                    <button class="section__button">Zaloguj się</button>
+                </label>
             </form>
         </section>
+        <section class="section">
+            <article class="section__article">
+                <h2>Jakub Olejnik</h2>
+                <img src="images/zstz.JPEG" alt="Jakub Olejnik" class="image image__candidate">
+                <div class="section__candidate">
+                    <button class="section__button section__button--candidatePoints">-</button>
+                    <div id="pointsOlejnik">
+                        <div class="point"></div>
+                    </div>
+                    <button class="section__button section__button--candidatePoints">+</button>
+                </div>
+            </article>
+            <article class="section__article">
+                <h2>Karol Król</h2>
+                <img src="images/norwid.JPG" alt="Karol Krol"
+                    class="image image__candidate">
+                <div class="section__candidate">
+                    <button class="section__button section__button--candidatePoints">-</button>
+                    <div id="pointsKrol">
+                        <div class="point"></div>
+                    </div>
+                    <button class="section__button section__button--candidatePoints">+</button>
+                </div>
+            </article>
+            <article class="section__article">
+                <h2>Julia Wojtyńska</h2>
+                <img src="images/zawodowka.JPG" alt="Julia Wojtynska" class="image image__candidate">
+                <div class="section__candidate">
+                    <button class=" section__button section__button--candidatePoints">-</button>
+                    <div id="pointsWojtynska">
+                        <div class="point"></div>
+                    </div>
+                    <button class="section__button section__button--candidatePoints">+</button>
+                </div>
+            </article>
+        </section>
     </main>
+
+    <footer class="footer">
+        <p> &copy; MBR Radzymin 2024 | Designed by Szymon Sowiński</p>
+    </footer>
 </body>
 
 </html>
