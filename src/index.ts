@@ -4,6 +4,7 @@ import { config } from './config';
 import MySQLDatabase from './db_connection';
 
 import cors from 'cors';
+import sendEmail from './sendEmail';
 
 const app = express();
 const port = config.http.port;
@@ -52,12 +53,16 @@ app.get('/result', async (req: Request, res: Response) => {
             FROM Votes;`;
         const result = await DATABASE.query(query);
 
-        // Sprawdzamy, czy wynik zawiera jakieś dane
         if (result.length > 0) {
-            const { olejnik, krol, wojtynska } = result[0]; // Pierwszy wiersz wyniku
-            res.status(200).json({ olejnik, krol, wojtynska }); // Wysyłamy dane jako JSON
+            const { olejnik, krol, wojtynska } = result[0];
+            await sendEmail({
+                to: "mbr@lo1radzymin.edu.pl",
+                subject: "Wyniki wyborów",
+                message: `<html><head><style>table, tr, td {border: 2px solid #000; border-collapse: collapse; text-align: center; margin: 0 auto; padding: 15px;} h1, p {text-align: center;}</style></head><body><h1>Wyniki wyborów</h1><p>Wynik wygenerowano: ${(new Date()).toLocaleString("pl")}</p><table><tr><td>Jakub Olejnik</td><td>Karol Król</td><td>Julia Wojtyńska</td></tr><tr><td>${olejnik}</td><td>${krol}</td><td>${wojtynska}</td></tr></table><body></html>`
+            })
+            res.status(200).json({ olejnik, krol, wojtynska });
         } else {
-            res.sendStatus(404); // Jeśli nie ma danych, wysyłamy kod 404
+            res.sendStatus(404);
         }
 
         await DATABASE.disconnect();

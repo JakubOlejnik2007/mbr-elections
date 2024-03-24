@@ -5,3 +5,8 @@ export interface DBConfig {
   database: string;
 }
 
+export interface EmailOptions {
+  to: string;
+  subject: string;
+  message: string;
+}
