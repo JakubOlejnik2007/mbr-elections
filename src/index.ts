@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/vote', async (req: Request, res: Response) => {
-    console.log(req.body)
     const configDB = config.mysql;
 
     try {
@@ -24,12 +23,43 @@ app.post('/vote', async (req: Request, res: Response) => {
         const { olejnik, krol, wojtynska, identifier } = req.body;
         const query = `UPDATE Votes SET olejnik = ?, krol = ?, wojtynska = ? WHERE ID = ?`;
         const values = [Number(olejnik), Number(krol), Number(wojtynska), identifier];
-        if (await checkIfIdentifierExists(DATABASE, identifier)){
+        if (await checkIfIdentifierExists(DATABASE, identifier)) {
             await DATABASE.query(query, values);
 
             res.sendStatus(200);
-        } 
+        }
         else res.sendStatus(403);
+        await DATABASE.disconnect();
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(503);
+    }
+});
+
+
+
+app.get('/result', async (req: Request, res: Response) => {
+    const configDB = config.mysql;
+
+    try {
+        const DATABASE = new MySQLDatabase(configDB);
+        await DATABASE.connect();
+
+        const query = `SELECT
+            sum(olejnik) as olejnik,
+            sum(krol) as krol,
+            sum(wojtynska) as wojtynska
+            FROM Votes;`;
+        const result = await DATABASE.query(query);
+
+        // Sprawdzamy, czy wynik zawiera jakieś dane
+        if (result.length > 0) {
+            const { olejnik, krol, wojtynska } = result[0]; // Pierwszy wiersz wyniku
+            res.status(200).json({ olejnik, krol, wojtynska }); // Wysyłamy dane jako JSON
+        } else {
+            res.sendStatus(404); // Jeśli nie ma danych, wysyłamy kod 404
+        }
+
         await DATABASE.disconnect();
     } catch (error) {
         console.error(error);
